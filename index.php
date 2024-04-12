@@ -1,3 +1,3 @@
 <?php
-    header('location: view/quanly.php');
+    header('location: controller/tiendien.php?act=login');
 ?>

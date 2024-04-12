@@ -32,7 +32,7 @@
                 <td>".$khachhang['tenkh']."</td>
                 <td>".$khachhang['diachi']."</td>
                 <td>".$khachhang['dt']."</td>
-                <td>".$khachhang['cmnd']."</td>
+                <td>".$khachhang['cccd']."</td>
                 <td><button id='button_".$khachhang['makh']."' onclick=\"showDienKe(".$khachhang['makh'].")\">Xem</button></td>
                 </tr>";
         echo "<tr id='dienke_row_".$khachhang['makh']."' style='display: none;'>

@@ -7,9 +7,9 @@
         return pdo_query($sql,$madk);
     }
 
-    function themhd($mahd, $ky,$tungay,$denngay,$chisodau, $chisocuoi, $tongthanhtien, $ngaylaphd, $tinhtrang){
-        $sql = "INSERT INTO hoadon (mahd, ky, tungay, denngay,chisodau,chisocuoi,tongthanhtien,ngaylaphd,tinhtrang) VALUES (?, ?, ?,?,?,?,?,?,?)";
-        pdo_execute($sql, $mahd, $ky,$tungay,$denngay,$chisodau, $chisocuoi, $tongthanhtien, $ngaylaphd, $tinhtrang);
+    function themhd($mahd, $manv, $ky,$tungay,$denngay,$chisodau, $chisocuoi, $tongthanhtien, $ngaylaphd, $tinhtrang){
+        $sql = "INSERT INTO hoadon (mahd, manv, ky, tungay, denngay,chisodau,chisocuoi,tongthanhtien,ngaylaphd,tinhtrang) VALUES (?, ?,?, ?,?,?,?,?,?,?)";
+        pdo_execute($sql, $mahd, $manv, $ky,$tungay,$denngay,$chisodau, $chisocuoi, $tongthanhtien, $ngaylaphd, $tinhtrang);
     }
     
     function showhd(){
@@ -22,4 +22,8 @@
         return pdo_query_one($sql, $idhd);
     }
     
+    function updateTrangThai($trangthai, $mahd){
+        $sql = "UPDATE hoadon SET tinhtrang=? WHERE mahd=?";
+        pdo_execute($sql, $trangthai, $mahd);
+    }
 ?>

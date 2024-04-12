@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1:3306
--- Thời gian đã tạo: Th4 07, 2024 lúc 04:40 PM
+-- Thời gian đã tạo: Th4 10, 2024 lúc 11:16 AM
 -- Phiên bản máy phục vụ: 5.7.36
 -- Phiên bản PHP: 8.0.13
 
@@ -29,67 +29,31 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `banggiabacdien`;
 CREATE TABLE IF NOT EXISTS `banggiabacdien` (
-  `id_banggia` int(11) NOT NULL AUTO_INCREMENT,
+  `id_banggia` int(15) NOT NULL AUTO_INCREMENT,
   `mabac` int(11) DEFAULT NULL,
   `mahd` varchar(13) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id_banggia`),
-  KEY `fk_banggiabacdien_mahd` (`mahd`),
-  KEY `fk_banggiabacdien_mabac` (`mabac`)
-) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  KEY `fk_banggiabacdien_mabac` (`mabac`),
+  KEY `fk_banggiabacdien_mahd` (`mahd`)
+) ENGINE=InnoDB AUTO_INCREMENT=247 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `banggiabacdien`
 --
 
 INSERT INTO `banggiabacdien` (`id_banggia`, `mabac`, `mahd`) VALUES
-(1, 11, '1'),
-(2, 10, '1'),
-(3, 3, '1'),
-(4, 4, '1'),
-(5, 9, '1'),
-(6, 13, '1'),
-(7, 11, '2'),
-(8, 10, '2'),
-(9, 3, '2'),
-(10, 4, '2'),
-(11, 9, '2'),
-(12, 13, '2'),
-(13, 14, '3'),
-(14, 10, '3'),
-(15, 3, '3'),
-(16, 4, '3'),
-(17, 9, '3'),
-(18, 13, '3'),
-(25, 14, '4'),
-(26, 10, '4'),
-(27, 3, '4'),
-(28, 4, '4'),
-(29, 9, '4'),
-(30, 13, '4'),
-(31, 14, '5'),
-(32, 15, '5'),
-(33, 3, '5'),
-(34, 16, '5'),
-(35, 9, '5'),
-(36, 13, '5'),
-(37, 14, '10'),
-(38, 15, '10'),
-(39, 3, '10'),
-(40, 16, '10'),
-(41, 9, '10'),
-(42, 13, '10'),
-(43, 14, '6'),
-(44, 15, '6'),
-(45, 3, '6'),
-(46, 16, '6'),
-(47, 9, '6'),
-(48, 13, '6'),
-(49, 14, '7'),
-(50, 15, '7'),
-(51, 3, '7'),
-(52, 16, '7'),
-(53, 9, '7'),
-(54, 13, '7');
+(235, 14, '240410173724'),
+(236, 15, '240410173724'),
+(237, 3, '240410173724'),
+(238, 16, '240410173724'),
+(239, 9, '240410173724'),
+(240, 13, '240410173724'),
+(241, 14, '240410180153'),
+(242, 15, '240410180153'),
+(243, 3, '240410180153'),
+(244, 16, '240410180153'),
+(245, 9, '240410180153'),
+(246, 13, '240410180153');
 
 -- --------------------------------------------------------
 
@@ -102,7 +66,8 @@ CREATE TABLE IF NOT EXISTS `cthoadon` (
   `mahd` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
   `madk` varchar(8) COLLATE utf8mb4_unicode_ci NOT NULL,
   `dntt` int(11) DEFAULT NULL,
-  `dongia` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tongtiendien` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tienthue` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`mahd`,`madk`),
   KEY `fk_cthoadon_madk` (`madk`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -111,16 +76,9 @@ CREATE TABLE IF NOT EXISTS `cthoadon` (
 -- Đang đổ dữ liệu cho bảng `cthoadon`
 --
 
-INSERT INTO `cthoadon` (`mahd`, `madk`, `dntt`, `dongia`) VALUES
-('', '1', NULL, NULL),
-('1', '1', 400, '2.500'),
-('10', '1', 250, '10.500'),
-('2', '1', 277, '2.500'),
-('3', '1', 372, '2.500'),
-('4', '1', 272, '1.788'),
-('5', '1', 272, '10.500'),
-('6', '1', 400, '2.500'),
-('7', '1', 800, '25.000');
+INSERT INTO `cthoadon` (`mahd`, `madk`, `dntt`, `tongtiendien`, `tienthue`) VALUES
+('240410173724', '1', 140, '1.100.000', '110.000'),
+('240410180153', '1', 303, '2.390.050', '239.005');
 
 -- --------------------------------------------------------
 
@@ -130,8 +88,8 @@ INSERT INTO `cthoadon` (`mahd`, `madk`, `dntt`, `dongia`) VALUES
 
 DROP TABLE IF EXISTS `dienke`;
 CREATE TABLE IF NOT EXISTS `dienke` (
-  `madk` varchar(8) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `makh` varchar(13) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `madk` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `makh` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `ngaysx` datetime DEFAULT NULL,
   `ngaylap` datetime DEFAULT NULL,
   `mota` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -157,7 +115,7 @@ INSERT INTO `dienke` (`madk`, `makh`, `ngaysx`, `ngaylap`, `mota`, `trangthai`) 
 
 DROP TABLE IF EXISTS `giadien`;
 CREATE TABLE IF NOT EXISTS `giadien` (
-  `mabac` int(11) NOT NULL AUTO_INCREMENT,
+  `mabac` int(15) NOT NULL AUTO_INCREMENT,
   `tenbac` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
   `tusokw` int(11) DEFAULT NULL,
   `densokw` int(11) DEFAULT NULL,
@@ -171,22 +129,22 @@ CREATE TABLE IF NOT EXISTS `giadien` (
 --
 
 INSERT INTO `giadien` (`mabac`, `tenbac`, `tusokw`, `densokw`, `dongia`, `ngayapdung`) VALUES
-(1, '0-100', 0, 100, '1.242', '2024-04-01 01:58:49'),
-(2, '101-150', 101, 150, '1.304', '2024-04-01 01:58:49'),
-(3, '151-200', 151, 200, '1.651', '2024-04-01 01:58:49'),
-(4, '201-300', 201, 300, '1.788', '2024-04-01 01:58:49'),
-(5, '301-400', 301, 400, '1.912', '2024-04-01 01:58:49'),
-(6, '0-100', 0, 100, '1.250', '2024-04-01 02:26:59'),
-(7, '101-150', 101, 150, '1.400', '2024-04-01 02:26:59'),
-(8, '301-400', 301, 400, '2.000', '2024-04-01 02:28:58'),
-(9, '301-400', 301, 400, '2.500', '2024-04-01 02:52:49'),
-(10, '101-150', 101, 150, '1.405', '2024-04-01 02:53:48'),
-(11, '0-100', 0, 100, '10.000', '2024-04-01 03:16:52'),
-(12, '401-trở lên', 401, 99999, '1.962', '2024-04-01 05:38:09'),
-(13, '401-trở lên', 401, 9999999, '25.000', '2024-04-01 14:10:01'),
-(14, '0-100', 0, 101, '25.000', '2024-04-03 16:10:25'),
-(15, '101-150', 101, 150, '15.000', '2024-04-03 16:24:14'),
-(16, '201-300', 201, 300, '10.500', '2024-04-03 16:26:31');
+(1, 'Bậc 1', 0, 100, '1.242', '2024-04-01 01:58:49'),
+(2, 'Bậc 2', 101, 150, '1.304', '2024-04-01 01:58:49'),
+(3, 'Bậc 3', 151, 200, '1.651', '2024-04-01 01:58:49'),
+(4, 'Bậc 4', 201, 300, '1.788', '2024-04-01 01:58:49'),
+(5, 'Bậc 5', 301, 400, '1.912', '2024-04-01 01:58:49'),
+(6, 'Bậc 1', 0, 100, '1.250', '2024-04-01 02:26:59'),
+(7, 'Bậc 2', 101, 150, '1.400', '2024-04-01 02:26:59'),
+(8, 'Bậc 5', 301, 400, '2.000', '2024-04-01 02:28:58'),
+(9, 'Bậc 5', 301, 400, '2.500', '2024-04-01 02:52:49'),
+(10, 'Bậc 2', 101, 150, '1.405', '2024-04-01 02:53:48'),
+(11, 'Bậc 1', 0, 100, '10.000', '2024-04-01 03:16:52'),
+(12, 'Bậc 6', 401, 99999, '1.962', '2024-04-01 05:38:09'),
+(13, 'Bậc 6', 401, 9999999, '25.000', '2024-04-01 14:10:01'),
+(14, 'Bậc 1', 0, 100, '5.000', '2024-04-03 16:10:25'),
+(15, 'Bậc 2', 101, 150, '15.000', '2024-04-03 16:24:14'),
+(16, 'Bậc 4', 201, 300, '10.500', '2024-04-03 16:26:31');
 
 -- --------------------------------------------------------
 
@@ -197,6 +155,7 @@ INSERT INTO `giadien` (`mabac`, `tenbac`, `tusokw`, `densokw`, `dongia`, `ngayap
 DROP TABLE IF EXISTS `hoadon`;
 CREATE TABLE IF NOT EXISTS `hoadon` (
   `mahd` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `manv` int(15) DEFAULT NULL,
   `ky` varchar(7) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `tungay` datetime DEFAULT NULL,
   `denngay` datetime DEFAULT NULL,
@@ -205,23 +164,17 @@ CREATE TABLE IF NOT EXISTS `hoadon` (
   `tongthanhtien` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `ngaylaphd` datetime DEFAULT NULL,
   `tinhtrang` int(1) DEFAULT NULL,
-  PRIMARY KEY (`mahd`)
+  PRIMARY KEY (`mahd`),
+  KEY `fk_manv_nhanvien` (`manv`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `hoadon`
 --
 
-INSERT INTO `hoadon` (`mahd`, `ky`, `tungay`, `denngay`, `chisodau`, `chisocuoi`, `tongthanhtien`, `ngaylaphd`, `tinhtrang`) VALUES
-('', '1', '2024-03-01 05:00:00', '2024-03-24 00:00:00', NULL, NULL, NULL, '2024-03-24 00:00:00', 0),
-('1', '1', '2024-03-24 00:00:00', '2024-03-24 00:00:00', 100, 500, '1000.000', '2024-03-24 00:00:00', 0),
-('10', '1', '2024-03-24 00:00:00', '2024-03-24 00:00:00', 100, 350, '2.625.000', '2024-03-24 00:00:00', 0),
-('2', '1', '2024-03-24 00:00:00', '2024-03-24 00:00:00', 500, 777, '1000.000', '2024-03-24 00:00:00', 0),
-('3', '1', '2024-03-24 00:00:00', '2024-03-24 00:00:00', 528, 900, '930.000', '2024-03-24 00:00:00', 0),
-('4', '1', '2024-03-24 00:00:00', '2024-03-24 00:00:00', 528, 800, '486.336', '2024-03-24 00:00:00', 0),
-('5', '1', '2024-03-24 00:00:00', '2024-03-24 00:00:00', 528, 800, '2856.000', '2024-03-24 00:00:00', 0),
-('6', '1', '2024-03-24 00:00:00', '2024-03-24 00:00:00', 100, 500, '1.000.000', '2024-03-24 00:00:00', 0),
-('7', '1', '2024-03-24 00:00:00', '2024-03-24 00:00:00', 100, 900, '20.000.000', '2024-03-28 05:16:15', 0);
+INSERT INTO `hoadon` (`mahd`, `manv`, `ky`, `tungay`, `denngay`, `chisodau`, `chisocuoi`, `tongthanhtien`, `ngaylaphd`, `tinhtrang`) VALUES
+('240410173724', NULL, '1', '2024-04-01 17:37:00', '2024-05-01 17:37:00', 100, 240, '1.210.000', '2024-04-10 17:37:27', 0),
+('240410180153', NULL, '1', '2024-04-10 17:37:27', '2024-05-10 18:01:00', 240, 543, '2.629.055', '2024-04-10 18:01:57', 0);
 
 -- --------------------------------------------------------
 
@@ -231,11 +184,11 @@ INSERT INTO `hoadon` (`mahd`, `ky`, `tungay`, `denngay`, `chisodau`, `chisocuoi`
 
 DROP TABLE IF EXISTS `khachhang`;
 CREATE TABLE IF NOT EXISTS `khachhang` (
-  `makh` varchar(13) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `makh` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tenkh` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `diachi` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `dt` varchar(12) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `cmnd` varchar(9) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `dt` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cccd` varchar(12) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`makh`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -243,9 +196,64 @@ CREATE TABLE IF NOT EXISTS `khachhang` (
 -- Đang đổ dữ liệu cho bảng `khachhang`
 --
 
-INSERT INTO `khachhang` (`makh`, `tenkh`, `diachi`, `dt`, `cmnd`) VALUES
+INSERT INTO `khachhang` (`makh`, `tenkh`, `diachi`, `dt`, `cccd`) VALUES
 ('1', 'Phong', 'Ai biết', '12345678', '12343'),
 ('2', 'AAA', 'AAA', '12345678', '1234567');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `nhanvien`
+--
+
+DROP TABLE IF EXISTS `nhanvien`;
+CREATE TABLE IF NOT EXISTS `nhanvien` (
+  `manv` int(15) NOT NULL AUTO_INCREMENT,
+  `tennv` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `diachi` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `dt` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cccd` varchar(12) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `quyen` int(1) DEFAULT NULL,
+  PRIMARY KEY (`manv`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `nhanvien`
+--
+
+INSERT INTO `nhanvien` (`manv`, `tennv`, `diachi`, `dt`, `cccd`, `quyen`) VALUES
+(1, 'Phong', 'Ai biet', '123456789', '1234567890', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `tinhdien`
+--
+
+DROP TABLE IF EXISTS `tinhdien`;
+CREATE TABLE IF NOT EXISTS `tinhdien` (
+  `id_tinhdien` int(15) NOT NULL AUTO_INCREMENT,
+  `mahd` varchar(13) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mabac` int(15) DEFAULT NULL,
+  `sanluongKwh` int(200) DEFAULT NULL,
+  `thanhtien` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id_tinhdien`),
+  KEY `fk_tinhtien_mahd` (`mahd`),
+  KEY `fk_tinhtien_mabac` (`mabac`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `tinhdien`
+--
+
+INSERT INTO `tinhdien` (`id_tinhdien`, `mahd`, `mabac`, `sanluongKwh`, `thanhtien`) VALUES
+(19, '240410173724', 14, 100, '500.000'),
+(20, '240410173724', 15, 40, '600.000'),
+(21, '240410180153', 14, 100, '500.000'),
+(22, '240410180153', 15, 50, '750.000'),
+(23, '240410180153', 3, 50, '82.550'),
+(24, '240410180153', 16, 100, '1.050.000'),
+(25, '240410180153', 9, 3, '7.500');
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -256,7 +264,7 @@ INSERT INTO `khachhang` (`makh`, `tenkh`, `diachi`, `dt`, `cmnd`) VALUES
 --
 ALTER TABLE `banggiabacdien`
   ADD CONSTRAINT `fk_banggiabacdien_mabac` FOREIGN KEY (`mabac`) REFERENCES `giadien` (`mabac`),
-  ADD CONSTRAINT `fk_banggiabacdien_mahd` FOREIGN KEY (`mahd`) REFERENCES `cthoadon` (`mahd`);
+  ADD CONSTRAINT `fk_banggiabacdien_mahd` FOREIGN KEY (`mahd`) REFERENCES `hoadon` (`mahd`);
 
 --
 -- Các ràng buộc cho bảng `cthoadon`
@@ -270,6 +278,19 @@ ALTER TABLE `cthoadon`
 --
 ALTER TABLE `dienke`
   ADD CONSTRAINT `fk_dienke_makh` FOREIGN KEY (`makh`) REFERENCES `khachhang` (`makh`);
+
+--
+-- Các ràng buộc cho bảng `hoadon`
+--
+ALTER TABLE `hoadon`
+  ADD CONSTRAINT `fk_manv_nhanvien` FOREIGN KEY (`manv`) REFERENCES `nhanvien` (`manv`);
+
+--
+-- Các ràng buộc cho bảng `tinhdien`
+--
+ALTER TABLE `tinhdien`
+  ADD CONSTRAINT `fk_tinhtien_mabac` FOREIGN KEY (`mabac`) REFERENCES `giadien` (`mabac`),
+  ADD CONSTRAINT `fk_tinhtien_mahd` FOREIGN KEY (`mahd`) REFERENCES `hoadon` (`mahd`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
