@@ -41,9 +41,16 @@ function showGiaHienHanh() {
     return pdo_query($sql);
 }
 
-function tinhTienDien($kq){
-    $sql = "SELECT * FROM giadien WHERE tusokw <= ? AND densokw >= ? ORDER BY ngayapdung DESC LIMIT 1";
-    return pdo_query($sql, $kq, $kq);
+function tinhTienDien(){
+    $sql = "SELECT *
+    FROM giadien g
+    WHERE g.ngayapdung = (
+        SELECT MAX(ngayapdung)
+        FROM giadien
+        WHERE tenbac = g.tenbac
+    )
+    ORDER BY g.tenbac, g.ngayapdung DESC";
+    return pdo_query($sql);
 }
 function tinhTienDien1($kq){
     $sql = "SELECT *
@@ -57,15 +64,9 @@ function tinhTienDien1($kq){
     return pdo_query($sql, $kq);
 }
 
-function thembanggiabac($mabc, $mahd){
-    $sql = "INSERT INTO banggiabacdien (mabac, mahd) VALUES (?, ?)";
-    pdo_execute($sql, $mabc, $mahd);
-}
-
-
-
-
-
-
+// function thembanggiabac($mabc, $mahd){
+//     $sql = "INSERT INTO banggiabacdien (mabac, mahd) VALUES (?, ?)";
+//     pdo_execute($sql, $mabc, $mahd);
+// }
 
 ?>

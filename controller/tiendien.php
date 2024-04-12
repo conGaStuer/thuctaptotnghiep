@@ -4,7 +4,6 @@
     include_once "../model/GiaDien.php"; 
     include_once "../model/HoaDon.php"; 
     include_once "../model/CTHoaDon.php"; 
-    include_once "../model/BangGiaBacDien.php"; 
     include_once "../model/TinhTien.php"; 
     include_once "../model/NhanVien.php"; 
 
@@ -22,7 +21,7 @@
                         if ($userLogin && !empty($userLogin)) {
                             foreach ($userLogin as $row) {
                                 extract($row);
-                                $_SESSION['name'] = $tenv;
+                                $_SESSION['name'] = $tennv;
                                 $_SESSION['username'] = $taikhoan;
                                 $_SESSION['id_nv'] = $manv;
                                 $_SESSION['password'] = $matkhau;
@@ -150,7 +149,6 @@
 
                 $show_cthd_byhd = show_CTHD_Full($hoadon_add);
 
-                $show_bgbd_byhd = showbanggiacapmahd($hoadon_add);
             }
                 include "../view/nhapchiso.php";
                 ?>
@@ -182,18 +180,14 @@
                         $denngay='';
                     }
                     if($ketqua >0){
-                        $star_tinh = tinhTienDien1($ketqua);
+                        $star_tinh = tinhTienDien();
                         if ($star_tinh) {
-                            //foreach ($star_tinh as $row) {
-                                // $tien_tra = $row['dongia'] * $ketqua;
-                                // $show_tien_phai_tra = number_format($tien_tra, 3, '.', '.'); 
-                                // $dongia_show=$row['dongia'];    
-                            //}
                             $tong_tien = 0;
                             echo '<table border="2">';
                             echo '<tr><th>Tên Bậc</th><th>Từ số KW</th><th>Đến số KW</th><th>Đơn giá</th><th>Sản lượng(KWh)</th><th>Thành tiền</th></tr>';
                             foreach ($star_tinh as $row) {
-                                if($row['densokw'] > 9999999){
+                                if($row['tusokw'] <= $ketqua){
+                                if($row['densokw'] > 999999998){
                                     $row['densokw'] = "trở lên";
                                 }
                                 echo '<tr>';
@@ -201,7 +195,11 @@
                                 echo '<td>' . $row['tusokw'] . '</td>';
                                 echo '<td>' . $row['densokw'] . '</td>';
                                 echo '<td>' . $row['dongia'] . '</td>';
-                                if($ketqua < $row['densokw']){
+                                
+                                if($ketqua < $row['tusokw']){
+                                        $thanhtienshow = 0;
+                                    echo '<td> 0 </td>';
+                                }else if($ketqua < $row['densokw']){
                                     if($row['tusokw'] != 0){
                                         $thanhtienshow = ($ketqua - $row['tusokw'] + 1);
                                     echo '<td>' . ($ketqua - $row['tusokw'] + 1) . '</td>';
@@ -219,12 +217,13 @@
                                     }
                                 }
                                 $tien_tra = $row['dongia'] * $thanhtienshow;
-                                $show_tien_tong = number_format($tien_tra, 3, '.', '.'); 
+                                $show_tien_tong = number_format($tien_tra, 3, '.', '.');
                                 echo '<td>' . $show_tien_tong . '</td>';    
                                 echo '</tr>';
                                 $tong_tien += $tien_tra; // Tính tổng tiền
                                 $show_tongtien = number_format($tong_tien, 3, '.', '.');
                             }
+                        }
                             echo '<tr><td colspan="4"></td><td>Tổng tiền:</td><td>' . $show_tongtien . '</td></tr>';
                             echo '</table>';
                             $show_tien_thue= $tong_tien * 0.1;
@@ -302,20 +301,27 @@
                             if (empty($error_messages)) {
                                 themhd($mahd, $idnv ,$ky, $tungay, $dengay, $cst, $css, $tongthanhtien, $ngaylaphd, $tinhtrang);
                                 themcthd($mahd, $madk, $dntt, $tongtien, $thue);
-                                foreach ($_POST['mabac'] as $mabac) {
-                                    thembanggiabac($mabac, $mahd);
-                                }
                                 if ($dntt > 0) {
-                                    $star_tinh = tinhTienDien1($ketqua);
+                                    $star_tinh = tinhTienDien();
                                     if ($star_tinh) {
                                         $tong_tien = 0;
                                         foreach ($star_tinh as $row) {
                                             $mabac_add = $row['mabac'];
-                                            if ($ketqua < $row['densokw']) {
+                                            if($ketqua < $row['tusokw']){
+                                                $thanhtienshow = 0;
+                                        }else if($ketqua < $row['densokw']){
+                                            if($row['tusokw'] != 0){
                                                 $thanhtienshow = ($ketqua - $row['tusokw'] + 1);
-                                            } else {
-                                                $thanhtienshow = ($row['densokw'] - $row['tusokw'] + 1);
+                                            }else{
+                                                $thanhtienshow = ($ketqua - $row['tusokw']);
                                             }
+                                        }else{
+                                            if($row['tusokw'] != 0){
+                                                $thanhtienshow = ($row['densokw'] - $row['tusokw'] + 1);
+                                            }else{
+                                                $thanhtienshow = ($row['densokw'] - $row['tusokw']);
+                                            }
+                                        }
                                             $tien_tra = $row['dongia'] * $thanhtienshow;
                                             $show_tien_tong = number_format($tien_tra, 3, '.', '.');
                                             $tong_tien += $tien_tra;
@@ -347,7 +353,7 @@
 
                     document.getElementById("secondForm").submit(); </script>';
                    
-                    // Lưu thông báo lỗi vào session để hiển thị sau đó
+                    //lưu các lỗi check đc vào session
                     $_SESSION['error_messages'] = $error_messages;
                     
                     if(isset($_SESSION['error_messages']) && !empty($_SESSION['error_messages'])) {
@@ -356,7 +362,6 @@
                             echo $error_message . '<br>';
                         }
                         echo '</p>';
-                        // Xóa thông báo lỗi sau khi đã hiển thị
                         unset($_SESSION['error_messages']);
                     
                     }

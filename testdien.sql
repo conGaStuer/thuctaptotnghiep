@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1:3306
--- Thời gian đã tạo: Th4 10, 2024 lúc 11:16 AM
+-- Thời gian đã tạo: Th4 12, 2024 lúc 03:42 PM
 -- Phiên bản máy phục vụ: 5.7.36
 -- Phiên bản PHP: 8.0.13
 
@@ -35,25 +35,19 @@ CREATE TABLE IF NOT EXISTS `banggiabacdien` (
   PRIMARY KEY (`id_banggia`),
   KEY `fk_banggiabacdien_mabac` (`mabac`),
   KEY `fk_banggiabacdien_mahd` (`mahd`)
-) ENGINE=InnoDB AUTO_INCREMENT=247 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `banggiabacdien`
 --
 
 INSERT INTO `banggiabacdien` (`id_banggia`, `mabac`, `mahd`) VALUES
-(235, 14, '240410173724'),
-(236, 15, '240410173724'),
-(237, 3, '240410173724'),
-(238, 16, '240410173724'),
-(239, 9, '240410173724'),
-(240, 13, '240410173724'),
-(241, 14, '240410180153'),
-(242, 15, '240410180153'),
-(243, 3, '240410180153'),
-(244, 16, '240410180153'),
-(245, 9, '240410180153'),
-(246, 13, '240410180153');
+(1, 14, '240412155314'),
+(2, 15, '240412155314'),
+(3, 3, '240412155314'),
+(4, 16, '240412155314'),
+(5, 9, '240412155314'),
+(6, 12, '240412155314');
 
 -- --------------------------------------------------------
 
@@ -77,8 +71,7 @@ CREATE TABLE IF NOT EXISTS `cthoadon` (
 --
 
 INSERT INTO `cthoadon` (`mahd`, `madk`, `dntt`, `tongtiendien`, `tienthue`) VALUES
-('240410173724', '1', 140, '1.100.000', '110.000'),
-('240410180153', '1', 303, '2.390.050', '239.005');
+('240412155314', '2', 211, '291.618', '29.162');
 
 -- --------------------------------------------------------
 
@@ -137,14 +130,13 @@ INSERT INTO `giadien` (`mabac`, `tenbac`, `tusokw`, `densokw`, `dongia`, `ngayap
 (6, 'Bậc 1', 0, 100, '1.250', '2024-04-01 02:26:59'),
 (7, 'Bậc 2', 101, 150, '1.400', '2024-04-01 02:26:59'),
 (8, 'Bậc 5', 301, 400, '2.000', '2024-04-01 02:28:58'),
-(9, 'Bậc 5', 301, 400, '2.500', '2024-04-01 02:52:49'),
+(9, 'Bậc 5', 301, 400, '1.912', '2024-04-01 02:52:49'),
 (10, 'Bậc 2', 101, 150, '1.405', '2024-04-01 02:53:48'),
-(11, 'Bậc 1', 0, 100, '10.000', '2024-04-01 03:16:52'),
-(12, 'Bậc 6', 401, 99999, '1.962', '2024-04-01 05:38:09'),
-(13, 'Bậc 6', 401, 9999999, '25.000', '2024-04-01 14:10:01'),
-(14, 'Bậc 1', 0, 100, '5.000', '2024-04-03 16:10:25'),
-(15, 'Bậc 2', 101, 150, '15.000', '2024-04-03 16:24:14'),
-(16, 'Bậc 4', 201, 300, '10.500', '2024-04-03 16:26:31');
+(11, 'Bậc 1', 0, 100, '1.242', '2024-04-01 03:16:52'),
+(12, 'Bậc 6', 401, 999999999, '1.962', '2024-04-01 05:38:09'),
+(14, 'Bậc 1', 0, 100, '1.242', '2024-04-03 16:10:25'),
+(15, 'Bậc 2', 101, 150, '1.304', '2024-04-03 16:24:14'),
+(16, 'Bậc 4', 201, 300, '1.788', '2024-04-03 16:26:31');
 
 -- --------------------------------------------------------
 
@@ -173,8 +165,7 @@ CREATE TABLE IF NOT EXISTS `hoadon` (
 --
 
 INSERT INTO `hoadon` (`mahd`, `manv`, `ky`, `tungay`, `denngay`, `chisodau`, `chisocuoi`, `tongthanhtien`, `ngaylaphd`, `tinhtrang`) VALUES
-('240410173724', NULL, '1', '2024-04-01 17:37:00', '2024-05-01 17:37:00', 100, 240, '1.210.000', '2024-04-10 17:37:27', 0),
-('240410180153', NULL, '1', '2024-04-10 17:37:27', '2024-05-10 18:01:00', 240, 543, '2.629.055', '2024-04-10 18:01:57', 0);
+('240412155314', 1, '04/2024', '2024-04-06 15:42:00', '2024-05-06 15:42:00', 0, 211, '320.780', '2024-04-12 15:53:17', 1);
 
 -- --------------------------------------------------------
 
@@ -209,6 +200,8 @@ INSERT INTO `khachhang` (`makh`, `tenkh`, `diachi`, `dt`, `cccd`) VALUES
 DROP TABLE IF EXISTS `nhanvien`;
 CREATE TABLE IF NOT EXISTS `nhanvien` (
   `manv` int(15) NOT NULL AUTO_INCREMENT,
+  `taikhoan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `matkhau` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tennv` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `diachi` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `dt` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -221,8 +214,8 @@ CREATE TABLE IF NOT EXISTS `nhanvien` (
 -- Đang đổ dữ liệu cho bảng `nhanvien`
 --
 
-INSERT INTO `nhanvien` (`manv`, `tennv`, `diachi`, `dt`, `cccd`, `quyen`) VALUES
-(1, 'Phong', 'Ai biet', '123456789', '1234567890', 0);
+INSERT INTO `nhanvien` (`manv`, `taikhoan`, `matkhau`, `tennv`, `diachi`, `dt`, `cccd`, `quyen`) VALUES
+(1, 'nv1@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Nhân viên 1', 'Ai biet', '123456789', '1234567890', 0);
 
 -- --------------------------------------------------------
 
@@ -240,20 +233,17 @@ CREATE TABLE IF NOT EXISTS `tinhdien` (
   PRIMARY KEY (`id_tinhdien`),
   KEY `fk_tinhtien_mahd` (`mahd`),
   KEY `fk_tinhtien_mabac` (`mabac`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `tinhdien`
 --
 
 INSERT INTO `tinhdien` (`id_tinhdien`, `mahd`, `mabac`, `sanluongKwh`, `thanhtien`) VALUES
-(19, '240410173724', 14, 100, '500.000'),
-(20, '240410173724', 15, 40, '600.000'),
-(21, '240410180153', 14, 100, '500.000'),
-(22, '240410180153', 15, 50, '750.000'),
-(23, '240410180153', 3, 50, '82.550'),
-(24, '240410180153', 16, 100, '1.050.000'),
-(25, '240410180153', 9, 3, '7.500');
+(1, '240412155314', 14, 101, '125.442'),
+(2, '240412155314', 15, 50, '65.200'),
+(3, '240412155314', 3, 50, '82.550'),
+(4, '240412155314', 16, 11, '19.668');
 
 --
 -- Các ràng buộc cho các bảng đã đổ

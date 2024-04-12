@@ -21,7 +21,6 @@
 
         $show_cthd_byhd = show_CTHD_Full($hoadon_add);
 
-        $show_bgbd_byhd = showbanggiacapmahd($hoadon_add);
     }
     if($inhoadon['tinhtrang'] == 0){
     // Thiết lập các thuộc tính của font và màu sắc
@@ -120,6 +119,7 @@
 
         // In dữ liệu từ mảng $show_tt_byhd
         foreach($show_tt_byhd as $row) {
+            if($row['sanluongKwh'] > 0 && $row['thanhtien'] > 0){
             if($row['densokw'] > 999999998){
                 $row['densokw'] = 'trở lên';
             }
@@ -132,7 +132,7 @@
             $thanhtien_float = floatval(str_replace('.', '', $row['thanhtien']));
             $tongtienthanhtoan += $thanhtien_float; 
         }
-
+    }
         // In tổng tiền
         $pdf->Cell(10);
         $pdf->Cell(135, 7, 'Tổng tiền', 1, 0, 'C', true);
@@ -156,32 +156,6 @@
         $pdf->Cell(0, 7, 'Không có dữ liệu phù hợp.', 0, 1);
     }
 
-// $pdf->Write(10, 'Bảng giá điện áp dụng cho hóa đơn');
-// $pdf->Ln(10);
-
-// // Định dạng các cột
-// $width_cell_bg = array(50, 50, 50, 50, 50);
-// $pdf->Cell($width_cell_bg[0], 6, 'Tên Bậc', 1, 0, 'C', true);
-// $pdf->Cell($width_cell_bg[1], 6, 'Từ số KW', 1, 0, 'C', true);
-// $pdf->Cell($width_cell_bg[2], 6, 'Đến số KW', 1, 0, 'C', true);
-// $pdf->Cell($width_cell_bg[3], 6, 'Đơn giá', 1, 0, 'C', true);
-// $pdf->Cell($width_cell_bg[4], 6, 'Ngày bắt đầu áp dụng', 1, 1, 'C', true);
-
-// $pdf->SetFillColor(235, 236, 236);
-// $fill_bg = false;
-
-// // Hiển thị dữ liệu của bảng giá điện
-// foreach($show_bgbd_byhd as $showbg) {
-//     if($showbg['densokw'] > 99999){
-//         $showbg['densokw'] = "Trở lên";
-//     }
-//     $pdf->Cell($width_cell_bg[0], 7, $showbg['tenbac'], 1, 0, 'C', $fill_bg);
-//     $pdf->Cell($width_cell_bg[1], 7, $showbg['tusokw'], 1, 0, 'C', $fill_bg);
-//     $pdf->Cell($width_cell_bg[2], 7, $showbg['densokw'], 1, 0, 'C', $fill_bg);
-//     $pdf->Cell($width_cell_bg[3], 7, $showbg['dongia'], 1, 0, 'C', $fill_bg);
-//     $pdf->Cell($width_cell_bg[4], 7, $showbg['ngayapdung'], 1, 1, 'C', $fill_bg);
-//     $fill_bg = !$fill_bg;
-// }
 
     $number = floatval(str_replace('.', '', $inhoadon['tongthanhtien'])); 
     $locale = new Numbers_Words_Vietnamese;
@@ -202,7 +176,7 @@
     $pdf->Ln(10);
 
 
-    $pdf->Cell(0, 10, 'Người lập                                                                                                            Khách hàng', 0, 1, 'L');
+    $pdf->Cell(10, 20, 'Người lập                                                                                                            Khách hàng', 0, 1, 'L');
     $pdf->Ln(10);
 
     $filename = 'hoadon.pdf';

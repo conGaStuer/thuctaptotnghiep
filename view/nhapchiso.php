@@ -22,7 +22,6 @@
 </head>
 <?php 
     if(isset($_GET['mahd'])){
-        echo 'Thêm hóa đơn thành công <br><br>';
         if(isset($_SESSION['success_messager'])){
             echo '<div style="color: red; font-weight: bold;">';
             echo $_SESSION['success_messager'] . '<br>';
@@ -125,7 +124,12 @@
                 </tr>
                 <?php
                         foreach($show_tt_byhd as $row){
+                            if($row['sanluongKwh'] > 0 && $row['thanhtien'] >0){
+                                if($row['densokw'] > 999999998){
+                                    $row['densokw'] = "trở lên";
+                                }
                 ?>
+                            
                             <tr>
                                 <td><?php echo $row['id_tinhdien']; ?></td>
                                 <td><?php echo $row['mahd']; ?></td>
@@ -140,6 +144,7 @@
                             $tongtienthanhtoan += $thanhtien_float; 
                                  
                         }
+                    }
                 ?>
                 <tr>
                     <td colspan="6" style="text-align:center; color:red; font-size:25px; font-weight:bold;">Tổng tiền</td>
@@ -155,7 +160,7 @@
 
                 <br>
                 <b>Bảng giá điện áp dụng cho hóa đơn</b>
-                <?php if($show_bgbd_byhd){ ?>
+                <?php if($show_tt_byhd){ ?>
                     <table border='1'>
                         <tr>
                             <th>Tên Bậc</th>
@@ -165,7 +170,7 @@
                             <th>Ngày bắt đầu áp dụng</th>
                         </tr>
                     <?php
-                    foreach($show_bgbd_byhd as $showbg){
+                    foreach($show_tt_byhd as $showbg){
                         if($showbg['densokw'] > 999999){
                             $showbg['densokw'] = "trở lên";
                         }
@@ -332,8 +337,6 @@ if(isset($_SESSION['error_messages']) && !empty($_SESSION['error_messages'])) {
         document.getElementById('addhd_button').setAttribute('disabled', 'disabled');
     }
 }
-
-
     // gọi hàm ktra trạng thái btn khi có sự thay đổi giá trị btn
     document.getElementById('ky').addEventListener('input', kiemTraTrangThaiButton);
     document.getElementById('tungay').addEventListener('input', kiemTraTrangThaiButton);

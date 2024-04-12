@@ -1,6 +1,7 @@
 <?php 
     if(isset($_SESSION['id_nv'])){
 ?>
+<b>Xin chào, <?php echo $_SESSION['name'] ?> </b>
 <h2><b>MÀN HÌNH QUẢN LÝ </b></h2>
 <button><a href="../controller/tiendien.php?act=quanlydien">Quản lý điện</a></button>
 
