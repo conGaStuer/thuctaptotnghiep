@@ -13,23 +13,31 @@ if (isset($_GET['act'])) {
             break;
         case "tracuukhachhang":
             include "../view/tracuu.php";
-            if (isset($_POST['searchCustomer'])) {
+            if (isset($_POST['searchCustomer']) && isset($_POST['searchKH'])) {
+                $choose = $_POST['searchKH'];
                 $makh = $_POST['makh'];
-                if($makh != ''){
-                $search_KH = searchIDKH($makh);
-                }else{
-                    echo '<script>alert("Vui lòng nhập mã khách hàng cần tìm");</script>';
+                $tenkh = $_POST['nameKH'];
+                if ($makh != '' && $choose == 0) {
+                    $search_KH = searchIDKH($makh);
+                } else if ($tenkh != '' && $choose == 1) {
+                    $search_KH_by_Name = searchNameKH($tenkh);
+                } else if ($makh == '' && $choose == 0) {
+                    echo '<script>alert("Vui lòng nhập thông tin mã cần tìm");</script>';
+                } else if ($tenkh == '' && $choose == 1) {
+                    echo '<script>alert("Vui lòng nhập thông tin tên cần tìm");</script>';
+                } else {
+                    echo '<script>alert("Vui lòng nhập đầy đủ thông tin cần tìm");</script>';
                 }
             }
             include "../view/timkhachhang.php";
             break;
         case "tracuudienke":
             include "../view/tracuu.php";
-            if(isset($_POST['SearchDK'])){
+            if (isset($_POST['SearchDK'])) {
                 $madk = $_POST['madk'];
-                if($madk != ''){
-                $search_DK = searchIDDK($madk);
-                }else{
+                if ($madk != '') {
+                    $search_DK = searchIDDK($madk);
+                } else {
                     echo '<script>alert("Vui lòng nhập mã điện kế cần tìm");</script>';
                 }
             }
@@ -37,24 +45,24 @@ if (isset($_GET['act'])) {
             break;
         case "tracuuhoadon":
             include "../view/tracuu.php";
-            if(isset($_POST['SearchDH'])){
+            if (isset($_POST['SearchDH'])) {
                 $mahd = $_POST['mahd'];
-                if($mahd != ''){
-                $search_DH = show_HD_BY_ID($mahd);
-                }else{
+                if ($mahd != '') {
+                    $search_DH = show_HD_BY_ID($mahd);
+                } else {
                     echo '<script>alert("Vui lòng nhập mã hóa đơn cần tìm");</script>';
                 }
             }
             include "../view/timhoadon.php";
             break;
         case "cthd":
-            if(isset($_GET['mahd'])){
-                $mahd=$_GET['mahd'];
+            if (isset($_GET['mahd'])) {
+                $mahd = $_GET['mahd'];
                 $CTHD_search = show_CTHD_Full($mahd);
                 $CTHD_search_TT = show_Data_TT_By_ID($mahd);
             }
             include "../view/CTHD.php";
-            
+
             break;
         case 'quanly':
             session_start();

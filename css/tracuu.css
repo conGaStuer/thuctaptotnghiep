@@ -26,6 +26,8 @@ body {
   width: 100px;
   border-radius: 50%;
   margin-bottom: 20px;
+  position: relative;
+  left: 50px;
 }
 
 .sidebar a {
@@ -33,6 +35,9 @@ body {
   color: #fff;
   text-decoration: none;
   margin-bottom: 10px;
+  font-weight: bold;
+  position: relative;
+  left: 20px;
 }
 
 .sidebar a:hover {
