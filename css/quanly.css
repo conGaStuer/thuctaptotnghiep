@@ -1,0 +1,87 @@
+/* ./css/quanly.css */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: rgba(33, 32, 32, 0.5);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+b {
+  font-size: 25px;
+}
+.control {
+  width: 800px;
+  height: 500px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.button {
+  width: 40%;
+  height: 80%;
+  color: rgb(74, 70, 70);
+  padding: 10px 20px;
+  border: 1px solid rgb(74, 70, 70);
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.button a {
+  text-decoration: none;
+  color: rgb(74, 70, 70);
+}
+
+.manage {
+  width: 100%;
+  margin: 0 auto;
+  height: 80px;
+  position: relative;
+  top: 60px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.fa-clipboard-user {
+  font-size: 50px;
+}
+img {
+  width: 250px;
+  margin: 0;
+  border-radius: 10px;
+}
+span {
+  font-size: 27px;
+  font-weight: bold;
+}
+
+h2 {
+  color: #333;
+  font-size: 40px;
+  text-align: center;
+}
+.logout {
+  float: right;
+  width: 120px;
+  height: 30px;
+  background-color: rgb(74, 70, 70);
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+.logout a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+.bolder {
+  font-weight: bold;
+}

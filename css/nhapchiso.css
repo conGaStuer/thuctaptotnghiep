@@ -1,0 +1,95 @@
+/* Reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* CSS cho body */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0; /* Màu nền */
+}
+
+/* CSS cho h2 */
+h2 {
+  color: #333; /* Màu chữ cho tiêu đề */
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* CSS cho table */
+table {
+  width: 90%; /* Độ rộng bảng */
+  margin: 20px auto;
+  border-collapse: collapse;
+  background-color: #fff; /* Màu nền của bảng */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Đổ bóng cho bảng */
+  height: 90vh;
+  margin-bottom: 100px;
+}
+
+/* CSS cho th và td */
+th,
+td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 10px;
+}
+
+/* CSS cho th */
+th {
+  background-color: #f2f2f2;
+  font-weight: bold; /* Chữ đậm cho tiêu đề cột */
+  text-indent: 10px;
+}
+
+/* CSS cho form */
+form {
+  max-width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.form {
+  width: 45%;
+}
+form label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="datetime-local"] {
+  width: calc(100%);
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+form input[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background-color: rgb(74, 70, 70);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+form input[type="submit"]:hover {
+  background-color: rgb(74, 70, 70); /* Màu nền khi di chuột vào */
+}
+h2 {
+  font-size: 40px;
+}
