@@ -1,0 +1,97 @@
+/* Reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+}
+
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+}
+
+.sidebar img {
+  width: 100px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.sidebar a {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  margin-bottom: 10px;
+}
+
+.sidebar a:hover {
+  text-decoration: underline;
+}
+
+.content {
+  margin-left: 270px;
+  padding: 20px;
+}
+
+.content h2 {
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th,
+table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+table th {
+  background-color: #f2f2f2;
+}
+.btn {
+  border: 1px solid #333;
+
+  width: 120px;
+  height: 30px;
+}
+.btn a {
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+}
+.search {
+  width: 1100px;
+  height: auto;
+  position: relative;
+  top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.search button {
+  width: 220px;
+  height: 35px;
+  background-color: #333;
+  border-radius: 5px;
+}
+.search button a {
+  text-decoration: none;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+}

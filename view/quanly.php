@@ -29,12 +29,12 @@ if (isset($_SESSION['id_nv'])) {
                         </div>
 
                     </a></button>
-                <button class="button"><a href="../controller/tiendien.php?act=quanlydien">
+                <button class="button"><a href="../controller/tracuu.php?act=tracuu">
 
                         <img src="../assets/admin.webp" alt="">
                         <div class="manage">
                             <i class="fa-solid fa-clipboard-user"></i>
-                            <span>Upcoming...</span>
+                            <span>Tra cứu</span>
                         </div>
 
                     </a></button>
